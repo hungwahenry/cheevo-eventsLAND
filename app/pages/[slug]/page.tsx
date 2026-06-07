@@ -70,11 +70,11 @@ export default async function PublicPageRoute({ params }: Props) {
       <section className="flex flex-1 flex-col px-6 py-10 md:py-16">
         <div className="mx-auto w-full max-w-3xl">
           <Link
-            href="/pages"
+            href="/"
             className="inline-flex items-center gap-1.5 text-xs font-sans-medium uppercase tracking-[0.18em] text-foreground/55 transition-colors hover:text-foreground"
           >
             <span aria-hidden>&larr;</span>
-            All pages
+            Home
           </Link>
 
           <h1 className="mt-6 text-[clamp(2rem,5vw,3rem)] font-black leading-[1.05] tracking-[-0.025em]">

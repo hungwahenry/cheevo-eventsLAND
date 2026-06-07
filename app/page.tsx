@@ -45,13 +45,6 @@ export default async function Page() {
                   </Link>
                 </span>
               ))}
-              <span className="opacity-50">·</span>
-              <Link
-                href="mailto:hello@cheevo.events"
-                className="transition-colors hover:text-foreground"
-              >
-                Contact
-              </Link>
             </div>
           </div>
         </div>
