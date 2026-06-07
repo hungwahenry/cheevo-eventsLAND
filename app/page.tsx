@@ -1,33 +1,15 @@
-import Image from "next/image"
 import Link from "next/link"
 import { EventMockup } from "@/components/landing/event-mockup"
-import { ArrowRightUp } from "@/components/landing/icons"
+import { SiteHeader } from "@/components/landing/site-header"
 import { StoreButton } from "@/components/landing/store-button"
+import { listPublicPages } from "@/features/pages/api"
 
-export default function Page() {
+export default async function Page() {
+  const pages = await listPublicPages().catch(() => [])
+
   return (
     <main className="relative flex h-svh flex-col overflow-hidden bg-background text-foreground">
-      <header className="relative z-20 px-6 py-5 md:py-6">
-        <div className="mx-auto flex w-full max-w-5xl items-center justify-between gap-4">
-          <Link href="/" aria-label="cheevo" className="inline-flex items-center">
-            <Image
-              src="/images/logo.png"
-              alt="cheevo"
-              width={1024}
-              height={256}
-              priority
-              className="h-6 w-auto md:h-7"
-            />
-          </Link>
-          <Link
-            href="https://cheevo.vip"
-            className="group inline-flex items-center gap-1.5 text-sm text-foreground/70 transition-colors hover:text-foreground"
-          >
-            For organisers
-            <ArrowRightUp className="size-3.5 transition-transform group-hover:translate-x-px group-hover:-translate-y-px" />
-          </Link>
-        </div>
-      </header>
+      <SiteHeader />
 
       <section className="relative z-10 flex flex-1 items-start justify-center px-6 pt-4 md:items-center md:pt-0">
         <div className="grid w-full max-w-5xl grid-cols-1 items-center md:grid-cols-12 md:gap-10">
@@ -49,19 +31,21 @@ export default function Page() {
 
             <div className="mt-6 flex flex-wrap items-center justify-center gap-x-3.5 gap-y-1 text-[11px] text-foreground/45 md:justify-start">
               <span>© {new Date().getFullYear()} cheevo</span>
+              {pages.length > 0 ? (
+                <span className="opacity-50">·</span>
+              ) : null}
+              {pages.map((page, i) => (
+                <span key={page.slug} className="contents">
+                  {i > 0 ? <span className="opacity-50">·</span> : null}
+                  <Link
+                    href={`/pages/${page.slug}`}
+                    className="transition-colors hover:text-foreground"
+                  >
+                    {page.title}
+                  </Link>
+                </span>
+              ))}
               <span className="opacity-50">·</span>
-              <Link
-                href="/legal/terms"
-                className="transition-colors hover:text-foreground"
-              >
-                Terms
-              </Link>
-              <Link
-                href="/legal/privacy"
-                className="transition-colors hover:text-foreground"
-              >
-                Privacy
-              </Link>
               <Link
                 href="mailto:hello@cheevo.events"
                 className="transition-colors hover:text-foreground"
