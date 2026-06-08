@@ -53,7 +53,7 @@ export default async function Page() {
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 flex justify-center px-6">
         <div className="grid w-full max-w-5xl grid-cols-1 items-end md:grid-cols-12 md:gap-10">
           <div className="flex justify-center md:col-span-5 md:col-start-8 md:justify-end">
-            <div className="translate-y-[20%]">
+            <div className="origin-bottom translate-y-[15%] scale-[0.66] sm:translate-y-[17%] sm:scale-[0.8] md:translate-y-[20%] md:scale-100">
               <EventMockup />
             </div>
           </div>
