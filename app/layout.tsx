@@ -13,10 +13,53 @@ const mono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "cheevo — find what's on, be there",
+  metadataBase: new URL("https://cheevo.events"),
+  title: {
+    default: "cheevo — find what's on, be there",
+    template: "%s — cheevo",
+  },
   description:
     "Every event Nigeria is throwing — in one app. Discover events, RSVP, and grab tickets in seconds.",
-  metadataBase: new URL("https://cheevo.events"),
+  applicationName: "cheevo",
+  keywords: [
+    "events",
+    "tickets",
+    "event tickets",
+    "concerts",
+    "parties",
+    "nightlife",
+    "things to do",
+    "Nigeria",
+    "Lagos",
+    "RSVP",
+    "cheevo",
+  ],
+  authors: [{ name: "cheevo", url: "https://cheevo.events" }],
+  creator: "cheevo",
+  publisher: "Issorite",
+  alternates: { canonical: "/" },
+  formatDetection: { telephone: false, email: false, address: false },
+  openGraph: {
+    type: "website",
+    siteName: "cheevo",
+    title: "cheevo — find what's on, be there",
+    description:
+      "Every event Nigeria is throwing — in one app. Discover events, RSVP, and grab tickets in seconds.",
+    url: "https://cheevo.events",
+    locale: "en_NG",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "cheevo — find what's on, be there",
+    description:
+      "Every event Nigeria is throwing — in one app. Discover events, RSVP, and grab tickets in seconds.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+  },
+  category: "events",
 }
 
 export default function RootLayout({

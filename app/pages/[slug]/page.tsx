@@ -21,10 +21,19 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const page = await getPublicPage(slug)
-  if (!page) return { title: "Not found — cheevo" }
+  if (!page) return { title: "Page not found" }
+  const description = page.meta_description ?? undefined
   return {
-    title: `${page.title} — cheevo`,
-    description: page.meta_description ?? undefined,
+    title: page.title,
+    description,
+    alternates: { canonical: `/pages/${slug}` },
+    openGraph: {
+      type: "article",
+      title: page.title,
+      description,
+      url: `/pages/${slug}`,
+    },
+    twitter: { card: "summary_large_image", title: page.title, description },
   }
 }
 

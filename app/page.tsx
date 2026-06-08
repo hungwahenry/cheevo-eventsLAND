@@ -7,8 +7,29 @@ import { listPublicPages } from "@/features/pages/api"
 export default async function Page() {
   const pages = await listPublicPages().catch(() => [])
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        name: "cheevo",
+        url: "https://cheevo.events",
+        logo: "https://cheevo.events/logo.png",
+      },
+      {
+        "@type": "WebSite",
+        name: "cheevo",
+        url: "https://cheevo.events",
+      },
+    ],
+  }
+
   return (
     <main className="relative flex h-svh flex-col overflow-hidden bg-background text-foreground">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <SiteHeader />
 
       <section className="relative z-10 flex flex-1 items-start justify-center px-6 pt-4 md:items-center md:pt-0">
